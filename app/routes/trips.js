@@ -23,7 +23,7 @@ router.post(
 )
 
 router.post(
-  '/:id',
+  '/:userid',
   requireAuth,
   AuthController.roleAuthorization(['admin']),
   trimRequest.all,
@@ -40,7 +40,7 @@ router.get(
 )
 
 router.get(
-  '/:id',
+  '/:userid',
   requireAuth,
   AuthController.roleAuthorization(['admin']),
   trimRequest.all,

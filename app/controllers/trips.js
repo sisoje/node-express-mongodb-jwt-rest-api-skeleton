@@ -51,7 +51,7 @@ exports.createMyItem = async (req, res) => {
 
 exports.createAdminItem = async (req, res) => {
   try {
-    const userId = req.id
+    const userId = req.userid
     req = matchedData(req)
     req.userId = userId
     res.status(201).json(await db.createItem(req, model))
@@ -70,7 +70,7 @@ exports.getMyItems = async (req, res) => {
 
 exports.getAdminItems = async (req, res) => {
   try {
-    res.status(200).json(await getAllItemsFromDB(req.id))
+    res.status(200).json(await getAllItemsFromDB(req.userid))
   } catch (error) {
     utils.handleError(res, error)
   }
