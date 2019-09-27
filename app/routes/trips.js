@@ -47,4 +47,21 @@ router.get(
   controller.getAdminItems
 )
 
+router.delete(
+  '/:id',
+  requireAuth,
+  AuthController.roleAuthorization(['user', 'admin']),
+  trimRequest.all,
+  controller.deleteItem
+)
+
+router.patch(
+  '/:id',
+  requireAuth,
+  AuthController.roleAuthorization(['user', 'admin']),
+  trimRequest.all,
+  validate.tripItem,
+  controller.updateItem
+)
+
 module.exports = router

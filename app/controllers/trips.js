@@ -6,11 +6,11 @@ const db = require('../middleware/db')
 /**
  * Gets all items from database
  */
-const getAllItemsFromDB = async userId => {
+const getAllItemsFromDB = async id => {
   return new Promise((resolve, reject) => {
     model.find(
       {
-        userId
+        userId: id
       },
       null,
       {
@@ -51,7 +51,7 @@ exports.createMyItem = async (req, res) => {
 
 exports.createAdminItem = async (req, res) => {
   try {
-    const userId = req.userid
+    const userId = await utils.isIDGood(req.userid)
     req = matchedData(req)
     req.userId = userId
     res.status(201).json(await db.createItem(req, model))
@@ -70,7 +70,27 @@ exports.getMyItems = async (req, res) => {
 
 exports.getAdminItems = async (req, res) => {
   try {
-    res.status(200).json(await getAllItemsFromDB(req.userid))
+    const userId = await utils.isIDGood(req.userid)
+    res.status(200).json(await getAllItemsFromDB(userId))
+  } catch (error) {
+    utils.handleError(res, error)
+  }
+}
+
+exports.deleteItem = async (req, res) => {
+  try {
+    const id = await utils.isIDGood(req.id)
+    res.status(200).json(await db.deleteItem(id, model))
+  } catch (error) {
+    utils.handleError(res, error)
+  }
+}
+
+exports.updateItem = async (req, res) => {
+  try {
+    const id = await utils.isIDGood(req.id)
+    req = matchedData(req)
+    res.status(200).json(await db.updateItem(id, model, req))
   } catch (error) {
     utils.handleError(res, error)
   }

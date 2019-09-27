@@ -5,13 +5,6 @@ const { check } = require('express-validator')
  * Validates create new item request
  */
 exports.tripItem = [
-  check('userId')
-    .exists()
-    .withMessage('MISSING')
-    .not()
-    .isEmpty()
-    .withMessage('IS_EMPTY')
-    .trim(),
   check('comment')
     .exists()
     .withMessage('MISSING')
