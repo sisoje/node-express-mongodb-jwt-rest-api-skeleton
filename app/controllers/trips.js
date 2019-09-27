@@ -3,15 +3,14 @@ const { matchedData } = require('express-validator')
 const utils = require('../middleware/utils')
 const db = require('../middleware/db')
 
-
 /**
  * Gets all items from database
  */
-const getAllItemsFromDB = async (userId) => {
+const getAllItemsFromDB = async userId => {
   return new Promise((resolve, reject) => {
     model.find(
       {
-        userId: userId
+        userId
       },
       null,
       {
@@ -41,7 +40,7 @@ const getAllItemsFromDB = async (userId) => {
 
 exports.createMyItem = async (req, res) => {
   try {
-    var userId = req.user._id
+    const userId = req.user._id
     req = matchedData(req)
     req.userId = userId
     res.status(201).json(await db.createItem(req, model))
@@ -52,7 +51,7 @@ exports.createMyItem = async (req, res) => {
 
 exports.createAdminItem = async (req, res) => {
   try {
-    var userId = req.id
+    const userId = req.id
     req = matchedData(req)
     req.userId = userId
     res.status(201).json(await db.createItem(req, model))
