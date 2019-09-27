@@ -3,32 +3,12 @@ const bcrypt = require('bcrypt-nodejs')
 const validator = require('validator')
 const mongoosePaginate = require('mongoose-paginate-v2')
 
-const TripSchema = new mongoose.Schema({
-  destination: {
-    type: String,
-    required: true
-  },
-  startDate: {
-    type: Date,
-    required: true
-  },
-  endDate: {
-    type: Date,
-    required: true
-  },
-  comment: {
-    type: String,
-    default: ''
-  }
-})
-
 const UserSchema = new mongoose.Schema(
   {
     name: {
       type: String,
       required: true
     },
-    trips: [TripSchema],
     email: {
       type: String,
       validate: {
