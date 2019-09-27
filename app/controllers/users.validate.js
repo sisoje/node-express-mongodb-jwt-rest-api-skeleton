@@ -36,7 +36,7 @@ exports.createItem = [
     .not()
     .isEmpty()
     .withMessage('IS_EMPTY')
-    .isIn(['user', 'admin'])
+    .isIn(['user', 'admin', 'manager'])
     .withMessage('USER_NOT_IN_KNOWN_ROLE'),
   check('phone')
     .exists()
