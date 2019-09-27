@@ -8,20 +8,24 @@ const TripSchema = new mongoose.Schema({
   },
   destination: {
     type: String,
-    required: true
+    default: ''
   },
   startDate: {
     type: Date,
-    required: true
+    default: Date.now
   },
   endDate: {
     type: Date,
-    required: true
+    default: Date.now
   },
   comment: {
     type: String,
     default: ''
   }
+},
+{
+  versionKey: false,
+  timestamps: true
 })
 
 TripSchema.plugin(mongoosePaginate)
