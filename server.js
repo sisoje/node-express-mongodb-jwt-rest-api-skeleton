@@ -1,6 +1,4 @@
-require('dotenv-safe').config({
-  allowEmptyValues: true
-})
+require('dotenv-safe').config()
 const express = require('express')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
