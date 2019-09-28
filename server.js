@@ -12,8 +12,7 @@ const initMongo = require('./config/mongo')
 const path = require('path')
 
 // Setup express server port from ENV, default: 3000
-const port = process.env.PORT || 8080;
-app.set('port', port)
+app.set('port', process.env.PORT || 3000)
 
 // Enable only in development HTTP request logger middleware
 if (process.env.NODE_ENV === 'development') {
@@ -67,12 +66,9 @@ app.set('views', path.join(__dirname, 'views'))
 app.engine('html', require('ejs').renderFile)
 app.set('view engine', 'html')
 app.use(require('./app/routes'))
+app.listen(app.get('port'))
 
 // Init MongoDB
 initMongo()
-
-app.listen(port, () => {
-  console.log('Express server listening on port', port)
-})
 
 module.exports = app // for testing
