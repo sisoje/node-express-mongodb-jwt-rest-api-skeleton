@@ -79,6 +79,7 @@ exports.getAdminItems = async (req, res) => {
 
 exports.deleteItem = async (req, res) => {
   try {
+    req = matchedData(req)
     const id = await utils.isIDGood(req.id)
     res.status(200).json(await db.deleteItem(id, model))
   } catch (error) {
@@ -88,8 +89,8 @@ exports.deleteItem = async (req, res) => {
 
 exports.updateItem = async (req, res) => {
   try {
-    const id = await utils.isIDGood(req.id)
     req = matchedData(req)
+    const id = await utils.isIDGood(req.id)
     res.status(200).json(await db.updateItem(id, model, req))
   } catch (error) {
     utils.handleError(res, error)

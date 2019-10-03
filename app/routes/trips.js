@@ -52,6 +52,7 @@ router.delete(
   requireAuth,
   AuthController.roleAuthorization(['user', 'manager', 'admin']),
   trimRequest.all,
+  validate.deleteItem,
   controller.deleteItem
 )
 
@@ -60,7 +61,7 @@ router.patch(
   requireAuth,
   AuthController.roleAuthorization(['user', 'manager', 'admin']),
   trimRequest.all,
-  validate.tripItem,
+  validate.updateItem,
   controller.updateItem
 )
 
