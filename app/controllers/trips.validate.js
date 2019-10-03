@@ -28,11 +28,11 @@ exports.tripItem = [
 
 exports.updateItem = [
   check('id')
-  .exists()
-  .withMessage('MISSING')
-  .not()
-  .isEmpty()
-  .withMessage('IS_EMPTY'),
+    .exists()
+    .withMessage('MISSING')
+    .not()
+    .isEmpty()
+    .withMessage('IS_EMPTY'),
   check('comment'),
   check('destination'),
   check('startDate')
@@ -65,4 +65,3 @@ exports.deleteItem = [
     validationResult(req, res, next)
   }
 ]
-
