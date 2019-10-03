@@ -80,11 +80,11 @@ exports.getOther = [
 
 exports.createOther = [
   check('userId')
-  .exists()
-  .withMessage('MISSING')
-  .not()
-  .isEmpty()
-  .withMessage('IS_EMPTY'),
+    .exists()
+    .withMessage('MISSING')
+    .not()
+    .isEmpty()
+    .withMessage('IS_EMPTY'),
   check('comment'),
   check('destination'),
   check('startDate')
