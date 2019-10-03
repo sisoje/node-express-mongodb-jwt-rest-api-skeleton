@@ -51,9 +51,7 @@ exports.createMyItem = async (req, res) => {
 
 exports.createAdminItem = async (req, res) => {
   try {
-    const userId = await utils.isIDGood(req.userid)
     req = matchedData(req)
-    req.userId = userId
     res.status(201).json(await db.createItem(req, model))
   } catch (error) {
     utils.handleError(res, error)
@@ -70,7 +68,8 @@ exports.getMyItems = async (req, res) => {
 
 exports.getAdminItems = async (req, res) => {
   try {
-    const userId = await utils.isIDGood(req.userid)
+    req = matchedData(req)
+    const userId = await utils.isIDGood(req.userId)
     res.status(200).json(await getAllItemsFromDB(userId))
   } catch (error) {
     utils.handleError(res, error)

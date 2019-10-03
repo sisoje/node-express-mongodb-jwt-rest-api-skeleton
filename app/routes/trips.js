@@ -23,11 +23,12 @@ router.post(
 )
 
 router.post(
-  '/:userid',
+  '/:userId',
   requireAuth,
   AuthController.roleAuthorization(['admin']),
   trimRequest.all,
   validate.tripItem,
+  validate.createOther,
   controller.createAdminItem
 )
 
@@ -40,10 +41,11 @@ router.get(
 )
 
 router.get(
-  '/:userid',
+  '/:userId',
   requireAuth,
   AuthController.roleAuthorization(['admin']),
   trimRequest.all,
+  validate.getOther,
   controller.getAdminItems
 )
 

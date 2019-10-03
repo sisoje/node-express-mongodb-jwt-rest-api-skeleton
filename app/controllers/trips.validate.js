@@ -65,3 +65,43 @@ exports.deleteItem = [
     validationResult(req, res, next)
   }
 ]
+
+exports.getOther = [
+  check('userId')
+    .exists()
+    .withMessage('MISSING')
+    .not()
+    .isEmpty()
+    .withMessage('IS_EMPTY'),
+  (req, res, next) => {
+    validationResult(req, res, next)
+  }
+]
+
+exports.createOther = [
+  check('userId')
+  .exists()
+  .withMessage('MISSING')
+  .not()
+  .isEmpty()
+  .withMessage('IS_EMPTY'),
+  check('comment'),
+  check('destination'),
+  check('startDate')
+    .exists()
+    .withMessage('MISSING')
+    .not()
+    .isEmpty()
+    .withMessage('IS_EMPTY')
+    .trim(),
+  check('endDate')
+    .exists()
+    .withMessage('MISSING')
+    .not()
+    .isEmpty()
+    .withMessage('IS_EMPTY')
+    .trim(),
+  (req, res, next) => {
+    validationResult(req, res, next)
+  }
+]
